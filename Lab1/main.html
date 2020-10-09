@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Быстрый старт. Размещение интерактивной карты на странице</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+        ymaps.ready(init);
+        var myMap, 
+            myPlacemark,
+            myYear;
+
+
+        function init(){ 
+            myMap = new ymaps.Map("map", {
+                center: [59.93, 30.31],
+                zoom: 7
+            });             
+        }
+
+        function countY() {
+            myYear = document.getElementById('textYear').value            
+
+            myMap.geoObjects.remove(myPlacemark);
+
+            if (myYear > 1914 && myYear < 1923) {
+                myYear = 'Петроград'
+                myPlacemark = new ymaps.Placemark([59.93, 30.31], {
+                hintContent: 'Петроград'
+                });
+            
+                myMap.geoObjects.add(myPlacemark);
+
+            } 
+            else if (myYear > 1924 && myYear < 1991) {
+                myYear = 'Ленинград'
+                myPlacemark = new ymaps.Placemark([59.93, 30.31], {
+                hintContent: 'Ленинград'
+                });
+            
+                myMap.geoObjects.add(myPlacemark);
+            }          
+            else {
+                myYear = 'Санкт-Петербург'
+                myPlacemark = new ymaps.Placemark([59.93, 30.31], {
+                hintContent: 'Санкт-Петербург!'
+                });
+            
+                myMap.geoObjects.add(myPlacemark);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="map" style="width: 600px; height: 400px"></div>
+    <p>Год</p>
+    <input type="number" id="textYear" size="40">
+    <input type="button" onclick="countY()" value="Ввод">
+</body>
+
+
+
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Быстрый старт. Размещение интерактивной карты на странице</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+        ymaps.ready(init);
+        var myMap,
+            Moscow,
+            Mytishi,
+            Himki,
+            Odincovo;
+
+        function init(){
+            myMap = new ymaps.Map("map", {
+                center: [55.770775, 37.599274],
+                zoom: 9
+            });
+        }
+
+        function weatherBalloon() {
+            var key = '01c79f7daa8ed828dd3f6ea2cb4dc2b2';
+            fetch('https://api.openweathermap.org/data/2.5/weather?q=' + 'Moscow' + '&appid=' + key)
+            .then(function(resp) { return resp.json() }) // Convert data to json
+            .then(function(data) {
+              drawWeather(data, Moscow);
+
+            })
+            .catch(function() {
+              // catch any errors
+            });
+            fetch('https://api.openweathermap.org/data/2.5/weather?q=' + 'Mytishchi' + '&appid=' + key)
+            .then(function(resp) { return resp.json() }) // Convert data to json
+            .then(function(data) {
+              drawWeather(data, Mytishi);
+            })
+            .catch(function() {
+              // catch any errors
+            });
+            fetch('https://api.openweathermap.org/data/2.5/weather?q=' + 'Khimki' + '&appid=' + key)
+            .then(function(resp) { return resp.json() }) // Convert data to json
+            .then(function(data) {
+              drawWeather(data, Himki);
+            })
+            .catch(function() {
+              // catch any errors
+            });
+            fetch('https://api.openweathermap.org/data/2.5/weather?q=' + 'Odintsovo' + '&appid=' + key)
+            .then(function(resp) { return resp.json() }) // Convert data to json
+            .then(function(data) {
+              drawWeather(data, Odincovo);
+            })
+            .catch(function() {
+              // catch any errors
+            });
+          }
+
+          function drawWeather( d, c ) {
+          	var celcius = Math.round(parseFloat(d.main.temp)-273.15);
+          	var fahrenheit = Math.round(((parseFloat(d.main.temp)-273.15)*1.8)+32);
+            var coordLon = d.coord.lon;
+            var coordLat = d.coord.lat;
+            var color = '#ff0000';
+            console.log(coordLat);
+            console.log(coordLon);
+
+            if (celcius <= 13) {
+              color = '#0000ff';
+            }
+            else {
+              color = '#ff0000';
+            }
+
+            c = new ymaps.Placemark([coordLat, coordLon], {
+            hintContent: celcius + '&deg;'
+          },
+          {
+          // Задаем стиль метки (метка в виде круга).
+          preset: "islands#circleDotIcon",
+          // Задаем цвет метки (в формате RGB).
+          iconColor: color
+          });
+          console.log(c);
+          myMap.geoObjects.add(c);
+          }
+
+        function countY() {
+
+                Moscow = new ymaps.Placemark([55.770775, 37.599274], {
+                hintContent: 'Москва'
+              },
+              {
+              // Задаем стиль метки (метка в виде круга).
+              preset: "islands#circleDotIcon",
+              // Задаем цвет метки (в формате RGB).
+              iconColor: '#ff0000'
+              });
+
+                myMap.geoObjects.add(Moscow);
+
+                Mytishi = new ymaps.Placemark([55.909534, 37.734891], {
+                hintContent: 'Мытищи'
+              },
+              {
+              // Задаем стиль метки (метка в виде круга).
+              preset: "islands#circleDotIcon",
+              // Задаем цвет метки (в формате RGB).
+              iconColor: '#ff0000'
+              });
+
+                myMap.geoObjects.add(Mytishi);
+
+                Himki = new ymaps.Placemark([55.895588, 37.425903], {
+                hintContent: 'Химки'
+              },
+              {
+              // Задаем стиль метки (метка в виде круга).
+              preset: "islands#circleDotIcon",
+              // Задаем цвет метки (в формате RGB).
+              iconColor: '#ff0000'
+              });
+
+                myMap.geoObjects.add(Himki);
+
+                Odincovo = new ymaps.Placemark([55.685844, 37.258788], {
+                hintContent: 'Одинцово'
+              },
+              {
+              // Задаем стиль метки (метка в виде круга).
+              preset: "islands#circleDotIcon",
+              // Задаем цвет метки (в формате RGB).
+              iconColor: '#ff0000'
+              });
+
+                myMap.geoObjects.add(Odincovo);
+
+
+
+        }
+
+    </script>
+</head>
+<body>
+    <div id="map" style="width: 600px; height: 400px"></div>
+</div>
+
+    <script>
+
+        window.onload = function() {
+          weatherBalloon();
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+.board {
+    margin: 0 auto;
+    width: 60vw;
+    height: 60vw;
+    max-height: 700px;
+    max-width: 700px;
+    min-width: 200px;
+    min-height: 200px;
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
+    grid-template-rows: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
+}
+.board-tile {
+    display: flex;
+    border: 1px solid gray;
+    border-collapse: collapse;
+}
+.bt-white {
+    background-color: white;
+}
+.bt-black {
+    background-color: black;
+}
+.bt-cordinate {
+    background-color: white;
+    text-align: center;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+}
+button {
+    display: block;
+    margin: 0 auto;
+    padding: 20px 50px 20px 50px;
+    margin-bottom: 25px;
+}
+.checker-piece {
+    padding: 10%;
+    width: 80%;
+    height: 80%;
+}
+.selected {
+    border: 1px solid yellow;
+    background-color: yellow;
+    opacity: 0.8;
+}
+
+.possible-move{
+    border: 1px solid yellow;
+    background-color: yellow;
+    border-radius: 100%;
+    width: 20%;
+    height: 20%;
+    margin: 0 auto;
+    margin-top: 37%;
+}
+.white-checker {
+    border: 1px solid gray;
+    border-radius: 100%;
+    margin: auto;
+    width: 80%;
+    height: 80%;
+    background-color: white;
+}
+.black-checker {
+    border: 1px solid gray;
+    border-radius: 100%;
+    margin: auto;
+    width: 80%;
+    height: 80%;
+    background-color: black;
+}

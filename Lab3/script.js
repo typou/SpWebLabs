@@ -1,8 +1,8 @@
-var i;
-var whiteChecker = "<div class='white-checker'></div>";
-var blackChecker = "<div class='black-checker'></div>";
+let i;
+const whiteChecker = "<div class='white-checker'></div>";
+const blackChecker = "<div class='black-checker'></div>";
 
-var boardTile = document.querySelectorAll(".board-tile");
+const boardTile = document.querySelectorAll(".board-tile");
 
 function addCheckers(){
 
@@ -30,13 +30,14 @@ function addCheckers(){
 boardTile.forEach(function(tile){
     tile.addEventListener("click", function(){
 
-        var possibleMoveIndicator = "<div class='possible-move'></div>";
+        let possibleMoveIndicator = "<div class='possible-move'></div>";
 
-        if(this.hasChildNodes){
+        let nullcheck2;
+        if (this.hasChildNodes) {
 
-            function clearSelected(){
-                var selectedDiv = document.querySelectorAll(".selected");
-                [].forEach.call(selectedDiv, function(sel){
+            function clearSelected() {
+                let selectedDiv = document.querySelectorAll(".selected");
+                [].forEach.call(selectedDiv, function (sel) {
                     sel.classList.remove("selected");
                 });
             }
@@ -47,18 +48,18 @@ boardTile.forEach(function(tile){
 
 
             //Выбранная позиция фишки
-            var pieceLocation = tile.id;
+            let pieceLocation = tile.id;
 
             //console.log("Position " + pieceLocation + " selected.");
 
             //Цвет фишки
-            if(tile.childNodes[0] != null){
+            if (tile.childNodes[0] != null) {
                 var pieceColor = tile.childNodes[0].className;
                 //console.log(pieceColor);
             }
 
             //Возможный ход
-            if(pieceColor == "black-checker"){
+            if (pieceColor == "black-checker") {
                 var possibleMove1 = pieceLocation - 9;
                 var possibleMove2 = pieceLocation - 11;
 
@@ -70,31 +71,31 @@ boardTile.forEach(function(tile){
             //console.log(possibleMove1 + " and " + possibleMove2 + " are possible moves.");
 
             //Индикатор возможного хода
-            var indicatorAdded1 = false;
-            var indicatorAdded2 = false;
+            let indicatorAdded1 = false;
+            let indicatorAdded2 = false;
 
-            var jump1 = false;
-            var jump2 = false;
+            let jump1 = false;
+            let jump2 = false;
 
-            var nullCheck = document.getElementById(possibleMove1);
-            var nullCheck2 = document.getElementById(possibleMove1 - 9);
-            if(nullCheck != null && tile.hasChildNodes()){
-                if(document.getElementById(possibleMove1).hasChildNodes() == 0){
+            let nullCheck = document.getElementById(possibleMove1);
+            let nullCheck2 = document.getElementById(possibleMove1 - 9);
+            if (nullCheck != null && tile.hasChildNodes()) {
+                if (document.getElementById(possibleMove1).hasChildNodes() == 0) {
                     document.getElementById(possibleMove1).innerHTML = possibleMoveIndicator;
                     indicatorAdded1 = true;
-                }else if(pieceColor == "black-checker"){
-                    if(nullCheck2 != null){
-                        if(document.getElementById(possibleMove1 - 9).hasChildNodes() == 0){
+                } else if (pieceColor == "black-checker") {
+                    if (nullCheck2 != null) {
+                        if (document.getElementById(possibleMove1 - 9).hasChildNodes() == 0) {
                             document.getElementById(possibleMove1 - 9).innerHTML = possibleMoveIndicator;
                             indicatorAdded1 = true;
-                            possibleMove1 -=9;
+                            possibleMove1 -= 9;
                             jump1 = true;
                         }
                     }
-                } else if(pieceColor == "white-checker"){
+                } else if (pieceColor == "white-checker") {
                     nullcheck2 = document.getElementById(parseInt(possibleMove1) + 9);
-                    if(nullcheck2 != null){
-                        if(document.getElementById(parseInt(possibleMove1) + 9).hasChildNodes() == 0){
+                    if (nullcheck2 != null) {
+                        if (document.getElementById(parseInt(possibleMove1) + 9).hasChildNodes() == 0) {
                             document.getElementById(parseInt(possibleMove1) + 9).innerHTML = possibleMoveIndicator;
                             indicatorAdded1 = true;
                             possibleMove1 = parseInt(possibleMove1) + 9;
@@ -105,24 +106,24 @@ boardTile.forEach(function(tile){
             }
 
             nullCheck = document.getElementById(possibleMove2);
-            nullCheck2 =  document.getElementById(possibleMove2 - 11);
-            if(nullCheck != null && tile.hasChildNodes()){
-                if(document.getElementById(possibleMove2).hasChildNodes() == 0){
+            nullCheck2 = document.getElementById(possibleMove2 - 11);
+            if (nullCheck != null && tile.hasChildNodes()) {
+                if (document.getElementById(possibleMove2).hasChildNodes() == 0) {
                     document.getElementById(possibleMove2).innerHTML = possibleMoveIndicator;
                     indicatorAdded2 = true;
-                } else if(pieceColor == "black-checker"){
-                    if(nullCheck2 != null){
-                        if(document.getElementById(possibleMove2 - 11).hasChildNodes() == 0){
+                } else if (pieceColor == "black-checker") {
+                    if (nullCheck2 != null) {
+                        if (document.getElementById(possibleMove2 - 11).hasChildNodes() == 0) {
                             document.getElementById(possibleMove2 - 11).innerHTML = possibleMoveIndicator;
                             indicatorAdded2 = true;
                             possibleMove2 -= 11;
                             jump2 = true;
                         }
                     }
-                } else if(pieceColor == "white-checker"){
+                } else if (pieceColor == "white-checker") {
                     nullcheck2 = document.getElementById(parseInt(possibleMove2) + 11);
-                    if(nullcheck2 != null){
-                        if(document.getElementById(parseInt(possibleMove2) + 11).hasChildNodes() == 0){
+                    if (nullcheck2 != null) {
+                        if (document.getElementById(parseInt(possibleMove2) + 11).hasChildNodes() == 0) {
                             document.getElementById(parseInt(possibleMove2) + 11).innerHTML = possibleMoveIndicator;
                             indicatorAdded2 = true;
                             possibleMove2 = parseInt(possibleMove2) + 11;
@@ -133,20 +134,21 @@ boardTile.forEach(function(tile){
             }
 
             //Подсвечивает выделенное поле
-            if(indicatorAdded1 || indicatorAdded2 === true){
-                if(tile.hasChildNodes()){ document.getElementById(pieceLocation).classList.add("selected");
+            if (indicatorAdded1 || indicatorAdded2 === true) {
+                if (tile.hasChildNodes()) {
+                    document.getElementById(pieceLocation).classList.add("selected");
                 }
             }
 
-            var jumpedPiece;
-            var pieceMoved = false;
+            let jumpedPiece;
+            let pieceMoved = false;
 
             //позволяет переместить шашку в возможное место
-            $("#"+possibleMove1).click(function(){
+            $("#" + possibleMove1).click(function () {
                 pieceMoved = true;
                 //Возможная победа
                 if (pieceColor == "black-checker") {
-                    if(parseInt(possibleMove1) < 8) {
+                    if (parseInt(possibleMove1) < 8) {
                         console.log("black win");
                         alert("black win");
                     }
@@ -158,17 +160,17 @@ boardTile.forEach(function(tile){
                     }
                 }
 
-                if(indicatorAdded1 && tile.hasChildNodes()){
+                if (indicatorAdded1 && tile.hasChildNodes()) {
                     $("#" + pieceLocation).empty();
-                    if(pieceColor == "black-checker"){
+                    if (pieceColor == "black-checker") {
                         $(this).html(blackChecker);
-                        if(jump1){
+                        if (jump1) {
                             jumpedPiece = pieceLocation - 9;
                             $("#" + jumpedPiece).empty();
                         }
-                    } else{
+                    } else {
                         $(this).html(whiteChecker);
-                        if(jump1){
+                        if (jump1) {
                             jumpedPiece = parseInt(pieceLocation) + 9;
                             $("#" + jumpedPiece).empty();
                         }
@@ -177,11 +179,11 @@ boardTile.forEach(function(tile){
                 return;
             });
 
-            $("#"+possibleMove2).click(function(){
+            $("#" + possibleMove2).click(function () {
                 pieceMoved = true;
                 //Победа
                 if (pieceColor == "black-checker") {
-                    if(parseInt(possibleMove2) < 8) {
+                    if (parseInt(possibleMove2) < 8) {
                         console.log("black win");
                         alert("black win");
                     }
@@ -193,19 +195,17 @@ boardTile.forEach(function(tile){
                     }
                 }
 
-                if(indicatorAdded2 && tile.hasChildNodes()){
+                if (indicatorAdded2 && tile.hasChildNodes()) {
                     $("#" + pieceLocation).empty();
-                    if(pieceColor == "black-checker"){
+                    if (pieceColor == "black-checker") {
                         $(this).html(blackChecker);
-                        if(jump2)
-                        {
+                        if (jump2) {
                             jumpedPiece = pieceLocation - 11;
                             $("#" + jumpedPiece).empty();
                         }
-                    } else{
+                    } else {
                         $(this).html(whiteChecker);
-                        if(jump2)
-                        {
+                        if (jump2) {
                             jumpedPiece = parseInt(pieceLocation) + 11;
                             $("#" + jumpedPiece).empty();
                         }

@@ -8,7 +8,6 @@ var Controller = function (){
             model.x = X;
             model.y = Y;
             view.render();
-            console.log(model.cells);
         } else {
             if (model.x !== null && model.y !== null){
                 //Черные фигуры

@@ -13,5 +13,4 @@ var Model = function(){
 
     this.x = null;
     this.y = null;
-
 }

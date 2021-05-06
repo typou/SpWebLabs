@@ -4,7 +4,6 @@ var View = function (model, onclickCell) {
     this._onclick = function (x, y, z) {
         onclickCell(x, y ,z);
     }
-
 }
 
 View.prototype.render = function () {
@@ -34,7 +33,5 @@ View.prototype.render = function () {
             board.appendChild(element);
         });
     });
-
-
 }
 

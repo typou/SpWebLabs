@@ -22,38 +22,10 @@
 .bt-black {
     background-color: black;
 }
-.bt-cordinate {
-    background-color: white;
-    text-align: center;
-    margin: auto;
-    width: 100%;
-    height: 100%;
-}
-button {
-    display: block;
-    margin: 0 auto;
-    padding: 20px 50px 20px 50px;
-    margin-bottom: 25px;
-}
-.checker-piece {
-    padding: 10%;
-    width: 80%;
-    height: 80%;
-}
 .selected {
     border: 1px solid yellow;
     background-color: yellow;
     opacity: 0.8;
-}
-
-.possible-move{
-    border: 1px solid yellow;
-    background-color: yellow;
-    border-radius: 100%;
-    width: 20%;
-    height: 20%;
-    margin: 0 auto;
-    margin-top: 37%;
 }
 .white-checker {
     border: 1px solid gray;

@@ -12,25 +12,24 @@ View.prototype.render = function () {
 
     this._model.cells.forEach((raw, outerIndex) => {
         raw.forEach((cell, innerIndex) => {
-            const id = outerIndex * raw.length + innerIndex;
-            // board.innerHTML += `<div id="${id}"
-            //     class="board-tile ${(innerIndex + outerIndex) % 2 === 0 ? "bt-white" : "bt-black"}">
-            //     ${cell === 1 ? "<div class='black-checker'></div>" : cell === 2 ? "<div class='white-checker'></div>" : ""} </div>`
-            // // const elem = document.getElementById(id);
+            var ns = 'http://www.w3.org/2000/svg';
 
-            const element = document.createElement("div");
-            element.innerHTML = `
-                ${cell === 1 ? "<div class='black-checker'></div>" : cell === 2 ? "<div class='white-checker'></div>" : ""}`
+            const svgElement = document.createElementNS(ns, "svg");
+            svgElement.setAttributeNS(null, 'width', '100%');
+            svgElement.setAttributeNS(null, 'height', '100%');
 
-            element.id = id;
-            element.classList.add(`board-tile`, (innerIndex + outerIndex) % 2 === 0 ? "bt-white" : "bt-black");
+            svgElement.innerHTML = ` <rect width="100%" height="100%" fill=${(innerIndex + outerIndex) % 2 === 0 ? "white" : "black"}>`
 
-            element.onclick = () => this._onclick(innerIndex, outerIndex, cell !== 0);
+            if (cell !== 0) {
+                svgElement.innerHTML += `<circle cx="50%" cy="50%" r="30%" stroke="gray" stroke-opacity="1" fill=${cell === 1 ? "black" : "white"}>`;
+            }
+
+            svgElement.onclick = () => this._onclick(innerIndex, outerIndex, cell !== 0);
 
             if (this._model.x === innerIndex && this._model.y === outerIndex){
-                element.classList.add(`selected`);
+                svgElement.querySelector("rect").setAttributeNS(null, 'fill', "yellow");
             }
-            board.appendChild(element);
+            board.appendChild(svgElement);
         });
     });
 }
